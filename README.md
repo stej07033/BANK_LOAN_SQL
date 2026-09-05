@@ -1,12 +1,36 @@
-# 🏦 Bank Loan Analysis — SQL Project
+# 🏦 BANK LOAN ANALYSIS | SQL PROJECT
 
 ## 📌 Project Overview
 
-This project focuses on analyzing **bank loan data using SQL** to generate meaningful business insights and Key Performance Indicators (KPIs).
+This project focuses on analyzing **Bank Loan Data using SQL**.
+
+The project contains SQL queries for:
+
+* Bank Loan Report | Summary
+* Total Loan Applications
+* MTD & PTMD Loan Applications
+* Total Funded Amount
+* MTD & PTMD Funded Amount
+* Total Received Amount
+* MTD & PTMD Received Amount
+* Average Interest Rate
+* Average DTI
+* Good Loan Analysis
+* Bad Loan Analysis
+* Loan Status Analysis
+* MTD Loan Status
+* Average Amount by Grade
+* Monthly Analysis
+* State Analysis
+* Term Analysis
+* Employee Length Analysis
+* Purpose Analysis
+* Home Ownership Analysis
+* Grade A Filter Analysis
 
 ---
 
-## 🛠️ Tools & Technologies
+# 🛠️ Tools Used
 
 * SQL
 * MySQL / SQL Server
@@ -15,285 +39,405 @@ This project focuses on analyzing **bank loan data using SQL** to generate meani
 
 ---
 
-# 📊 Bank Loan Report — Summary
+# 📊 A. BANK LOAN REPORT | SUMMARY
 
-## 1. Total Loan Applications
+## Total Loan Applications
 
 '''
+-- Total loan applications
+
 SELECT COUNT(ID) AS total_loan_appications
-FROM Bank_loan_data;
+from Bank_loan_data;
 '''
 
-## 2. MTD Loan Applications
+## MTD Loan Applications
 
 '''
+--MTD loan applications
+
 SELECT COUNT(ID) AS total_mtd_applications
 FROM Bank_loan_data
-WHERE MONTH(issue_date) = 12;
+where month(issue_date) = 12;
 '''
 
-## 3. PMTD Loan Applications
+## PTMD Loan Applications
 
 '''
+--PTMD loan applications
+
 SELECT COUNT(ID) AS total_ptmd_applications
+from Bank_loan_data
+where month(issue_date) = 11;
+'''
+
+## Total Funded Amount
+
+'''
+--Total funded amount
+
+SELECT SUM(loan_amount) as total_loan_amount
+from Bank_loan_data;
+'''
+
+## MTD Funded Amount
+
+'''
+--MTD funded amount
+
+SELECT SUM(loan_amount) AS total_mtd_amount
 FROM Bank_loan_data
-WHERE MONTH(issue_date) = 11;
+where month(issue_date) = 12;
 '''
 
-## 4. Total Funded Amount
+## PTMD Funded Amount
 
 '''
-SELECT SUM(loan_amount) AS total_loan_amount
-FROM Bank_loan_data;
+--PTMD funded amount
+
+SELECT sum(loan_amount) AS total_ptmd_amount
+from Bank_loan_data
+where month(issue_date) = 11;
 '''
 
-## 5. Total Received Amount
+## Total Received Amount
 
 '''
-SELECT SUM(total_payment) AS total_loan_amount
-FROM Bank_loan_data;
+--Total Recevied amount
+
+SELECT SUM(total_payment) as total_loan_amount
+from Bank_loan_data;
 '''
 
-## 6. Average Interest Rate
+## MTD Total Received Amount
 
 '''
-SELECT ROUND(AVG(int_rate),4) * 100 AS avg_interest_rate
-FROM Bank_loan_data;
+--MTD total Recevied amount
+
+SELECT SUM(total_payment) AS total_mtd_amount
+FROM Bank_loan_data
+where month(issue_date) = 12;
 '''
 
-## 7. Average DTI
+## PTMD Total Received Amount
 
 '''
-SELECT ROUND(AVG(DTI),4) * 100 AS avg_dti_rate
-FROM Bank_loan_data;
+--PTMD total Recevied amount
+
+SELECT sum(total_payment) AS total_ptmd_amount
+from Bank_loan_data
+where month(issue_date) = 11;
+'''
+
+## Average Interest Rate
+
+'''
+--int_rate avg interest rate
+
+SELECT round(AVG(int_rate),4)*100 as avg_interest_rate
+from Bank_loan_data;
+'''
+
+## MTD Average Interest Rate
+
+'''
+--MTD average interest rate
+
+SELECT round(AVG(int_rate),4)*100 as avg_mtd_rate
+from Bank_loan_data
+where month(issue_date) = 12;
+'''
+
+## PTMD Average Interest Rate
+
+'''
+--PTMD average interest rate
+
+SELECT round(AVG(int_rate),4)*100 as avg_ptmd_rate
+from Bank_loan_data
+where month(issue_date) = 11;
+'''
+
+## Average DTI Rate
+
+'''
+--Dti avg rate
+
+SELECT round(AVG(DTI),4)*100 AS avg_dti_rate
+from Bank_loan_data;
+'''
+
+## MTD Average DTI Rate
+
+'''
+--MTD dti avg_rate
+
+SELECT round(AVG(Dti),4)*100 as avg_mtd_dti_rate
+from Bank_loan_data
+where month(issue_date) = 12;
+'''
+
+## PTMD Average DTI Rate
+
+'''
+--PTMD dit avg_rate
+
+SELECT round(AVG(Dti),4)*100 as avg_ptmd_dti_rate
+from Bank_loan_data
+where month(issue_date) = 11;
 '''
 
 ---
 
-# ✅ Good Loan Analysis
+# ✅ GOOD LOAN ANALYSIS
 
-### Good Loan Percentage
+## Good Loan Percentage
 
 '''
+---Good loan applications
+
 SELECT
-(COUNT(
-CASE
-WHEN loan_status = 'Fully Paid'
-OR loan_status = 'Current'
-THEN id
-END
-) * 100) / COUNT(ID) AS total_loan_percentage
-FROM Bank_loan_data;
+(COUNT(CASE WHEN loan_status = 'Fully Paid' or loan_status = 'Current' then id end) * 100)
+/
+COUNT(ID) AS total_loan_percentage
+from Bank_loan_data;
 '''
 
-### Good Loan Applications
+## Good Loan Applications
 
 '''
-SELECT COUNT(ID) AS good_loan_applications
-FROM Bank_loan_data
-WHERE loan_status = 'Fully Paid'
-OR loan_status = 'Current';
-'''
+--- Good loan applications
 
-### Good Loan Funded Amount
-
-'''
-SELECT SUM(loan_amount) AS total_amount
-FROM Bank_loan_data
-WHERE loan_status = 'Fully Paid'
-OR loan_status = 'Current';
-'''
-
-### Good Loan Received Amount
-
-'''
-SELECT SUM(total_payment) AS total_amount
-FROM Bank_loan_data
-WHERE loan_status = 'Fully Paid'
-OR loan_status = 'Current';
-'''
-
----
-
-# ❌ Bad Loan Analysis
-
-### Bad Loan Percentage
-
-'''
 SELECT
-(COUNT(
-CASE
-WHEN loan_status = 'Charged Off'
-THEN id
-END
-) * 100) / COUNT(ID) AS total_loan_percentage
-FROM Bank_loan_data;
+COUNT(ID) AS good_loan_applications
+from Bank_loan_data
+where loan_status = 'Fully Paid' or loan_status = 'Current';
 '''
 
-### Bad Loan Applications
+## Good Loan Funded Amount
 
 '''
-SELECT COUNT(ID) AS bad_loan_applications
-FROM Bank_loan_data
-WHERE loan_status = 'Charged Off';
-'''
+--Good loan Funded amount
 
-### Bad Loan Funded Amount
-
-'''
-SELECT SUM(loan_amount) AS total_amount
-FROM Bank_loan_data
-WHERE loan_status = 'Charged Off';
-'''
-
-### Bad Loan Received Amount
-
-'''
-SELECT SUM(total_payment) AS total_amount
-FROM Bank_loan_data
-WHERE loan_status = 'Charged Off';
-'''
-
----
-
-# 📈 Loan Status Analysis
-
-'''
 SELECT
-loan_status,
-COUNT(id) AS total_applications,
-SUM(loan_amount) AS total_funded_amount,
-SUM(total_payment) AS total_recevied_amount,
-ROUND(AVG(int_rate),4) * 100 AS avg_interest_rate,
-ROUND(AVG(dti),4) * 100 AS avg_approval_rate
-FROM bank_loan_data
-GROUP BY loan_status;
+SUM(loan_amount) as total_amount
+from Bank_loan_data
+where loan_status = 'Fully Paid' or loan_status = 'Current';
 '''
 
----
-
-# 📅 MTD Loan Status
+## Good Loan Received Amount
 
 '''
+--Good recevied amount
+
 SELECT
-loan_status,
-SUM(loan_amount) AS MTD_funded_amount,
-SUM(total_payment) AS MTD_recevied_amount
-FROM Bank_loan_data
-WHERE MONTH(issue_date) = 12
-GROUP BY loan_status;
+SUM(total_payment) as total_amount
+from Bank_loan_data
+where loan_status = 'Fully Paid' or loan_status = 'Current';
 '''
 
 ---
 
-# ⭐ Grade Analysis
+# ❌ BAD LOAN ANALYSIS
+
+## Bad Loan Percentage
 
 '''
+---Bad loan applications
+
 SELECT
-grade,
-ROUND(AVG(loan_amount),4) * 100 AS avg_grade_funded_amount,
-ROUND(AVG(total_payment),4) * 100 AS avg_grade_recevied_amount
-FROM Bank_loan_data
-GROUP BY grade;
+(COUNT(CASE WHEN loan_status = 'Charged Off' then id end) * 100)
+/
+COUNT(ID) AS total_loan_percentage
+from Bank_loan_data;
 '''
 
----
-
-# 📊 Monthly Analysis
+## Bad Loan Applications
 
 '''
+---Bad loan applications
+
 SELECT
-MONTH(issue_date) AS month_number,
-DATENAME(month, issue_date) AS month_name,
-SUM(loan_amount) AS total_funded_amount,
-SUM(total_payment) AS total_recevied_amount
-FROM Bank_loan_data
-GROUP BY
-MONTH(issue_date),
-DATENAME(month, issue_date)
-ORDER BY total_funded_amount, total_recevied_amount DESC;
+COUNT(ID) AS bad_loan_applications
+from Bank_loan_data
+where loan_status = 'Charged Off';
 '''
 
----
-
-# 🗺️ State Analysis
+## Bad Loan Funded Amount
 
 '''
+--Bad loan Funded amount
+
 SELECT
-address_state,
-COUNT(id) AS total_applications_by_state,
-SUM(loan_amount) AS total_funded_amount_by_state,
-SUM(total_payment) AS total_received_amount_by_state
-FROM Bank_loan_data
-GROUP BY address_state
-ORDER BY total_applications_by_state,
-total_received_amount_by_state DESC;
+SUM(loan_amount) as total_amount
+from Bank_loan_data
+where loan_status = 'Charged Off';
 '''
 
----
-
-# 📆 Loan Term Analysis
+## Bad Loan Received Amount
 
 '''
+--Bad recevied amount
+
 SELECT
-TERM,
-COUNT(id) AS total_applications,
-SUM(loan_amount) AS total_funded_dif_term,
-SUM(total_payment) AS total_received_dif_term
-FROM Bank_loan_data
-GROUP BY term;
+SUM(total_payment) as total_amount
+from Bank_loan_data
+where loan_status = 'Charged Off';
 '''
 
 ---
 
-# 👨‍💼 Employee Length Analysis
+# 📈 LOAN STATUS
 
 '''
-SELECT
-emp_length,
-COUNT(id) AS total_applications,
-SUM(loan_amount) AS total_funded_dif_emp_len,
-SUM(total_payment) AS total_received_dif_emp_Len
-FROM Bank_loan_data
-GROUP BY emp_length
-ORDER BY emp_length DESC;
-'''
+---Loan Status
 
----
-
-# 🎯 Loan Purpose Analysis
-
-'''
-SELECT
-PURPOSE,
-COUNT(id) AS total_applications,
-SUM(loan_amount) AS total_funded_dif_emp_purpose,
-SUM(total_payment) AS total_received_dif_purpose
-FROM Bank_loan_data
-GROUP BY purpose
-ORDER BY purpose DESC;
+SELECT loan_status,
+count(id) as total_applications,
+sum(loan_amount) as total_funded_amount,
+sum(total_payment) as total_recevied_amount,
+round(avg(int_rate),4)*100 as avg_interest_rate,
+round(avg(dti),4)*100 as avg_approval_rate
+from bank_loan_data
+group by loan_status;
 '''
 
 ---
 
-# 🏠 Home Ownership Analysis
+# 📅 MTD LOAN STATUS
 
 '''
-SELECT
-home_ownership,
-COUNT(id) AS total_applications,
-SUM(loan_amount) AS total_funded_dif_emp_home,
-SUM(total_payment) AS total_received_dif_home
-FROM Bank_loan_data
-GROUP BY home_ownership
-ORDER BY home_ownership;
+---MTD loan status
+
+SELECT loan_status,
+sum(loan_amount) as MTD_funded_amount,
+sum(total_payment) as MTD_recevied_amount
+from Bank_loan_data
+where MONTH(issue_date) = 12
+group by loan_status;
 '''
 
 ---
 
-# 🔎 Grade A Filter Analysis
+# ⭐ AVERAGE AMOUNT DIFFERENT GRADE
 
 '''
+---AVG amount different grade
+
+SELECT grade,
+round(avg(loan_amount),4)*100 as avg_grade_funded_amount,
+round(avg(total_payment),4)*100 as avg_grade_recevied_amount
+from Bank_loan_data
+group by grade;
+'''
+
+---
+
+# 📊 B. BANK LOAN REPORT | OVERVIEW
+
+## MONTH
+
+'''
+---B.BANK LOAN REPORT | OVERVIEW
+
+-- MONTH
+
+SELECT month(issue_date) as month_number,
+datename(month,issue_date) as month_name,
+sum(loan_amount) as total_funded_amount,
+sum(total_payment) as total_recevied_amount
+from Bank_loan_data
+group by month(issue_date),
+datename(month,issue_date)
+order by total_funded_amount,total_recevied_amount desc;
+'''
+
+---
+
+# 🗺️ STATE
+
+'''
+-- STATE
+
+SELECT address_state,
+count(id) as total_applications_by_state,
+sum(loan_amount) astotal_applications_by_state,
+sum(total_payment) as total_received_amount_by_state
+from Bank_loan_data
+group by address_state
+order by total_applications_by_state,
+total_received_amount_by_state desc;
+'''
+
+---
+
+# 📆 TERM
+
+'''
+--Term
+
+SELECT TERM,
+count(id) as total_applications,
+sum(loan_amount) as total_funded_dif_term,
+sum(total_payment) as total_received_dif_term
+from Bank_loan_data
+group by term;
+'''
+
+---
+
+# 👨‍💼 EMPLOYEE LENGTH
+
+'''
+-- EMPLOYEE_LENGTH
+
+SELECT emp_length,
+count(id) as total_applications,
+sum(loan_amount) as total_funded_dif_emp_len,
+sum(total_payment) as total_received_dif_emp_Len
+from Bank_loan_data
+group by emp_length
+order by emp_length desc;
+'''
+
+---
+
+# 🎯 PURPOSE
+
+'''
+--PURPOSE
+
+SELECT PURPOSE,
+count(id) as total_applications,
+sum(loan_amount) as total_funded_dif_emp_purpose,
+sum(total_payment) as total_received_dif_purpose
+from Bank_loan_data
+group by purpose
+order by purpose desc;
+'''
+
+---
+
+# 🏠 HOME OWNERSHIP
+
+'''
+--HOME_OWNERSHIP
+
+SELECT home_ownership,
+count(id) as total_applications,
+sum(loan_amount) as total_funded_dif_emp_home,
+sum(total_payment) as total_received_dif_home
+from Bank_loan_data
+group by home_ownership
+order by  home_ownership;
+'''
+
+---
+
+# 🔎 GRADE A FILTER — DASHBOARD
+
+'''
+--See the results when we hit the Grade A in the filters for dashboards.
+
 SELECT
 purpose AS PURPOSE,
 COUNT(id) AS Total_Loan_Applications,
@@ -306,13 +450,15 @@ GROUP BY purpose;
 
 ---
 
-# 📁 Project Structure
+# 📁 PROJECT STRUCTURE
 
 '''
 Bank-Loan-SQL-Analysis/
 │
 ├── Bank_Loan_Data.csv
-├── solutions.sql
+│
+├── solutions(1).sql
+│
 ├── README.md
 │
 └── Dashboard/
@@ -321,27 +467,53 @@ Bank-Loan-SQL-Analysis/
 
 ---
 
-# 💡 Key Business Insights
+# 💡 BUSINESS INSIGHTS
 
-* Analyze total loan applications
-* Calculate funded and received amounts
-* Compare MTD and PMTD performance
-* Identify Good and Bad Loans
-* Analyze loan status
-* Analyze monthly trends
-* Compare states and loan terms
-* Analyze loan purposes
-* Analyze employee length
-* Analyze home ownership
-* Analyze Grade A loans
+This project can be used to analyze:
+
+* Total loan applications
+* Funded loan amounts
+* Received loan amounts
+* Interest rate performance
+* DTI performance
+* Good vs Bad loans
+* Loan status
+* Monthly loan trends
+* State-wise loan performance
+* Loan term performance
+* Employee length
+* Loan purpose
+* Home ownership
+* Loan grade performance
 
 ---
 
-# 👨‍💻 Author
+# 🚀 SKILLS DEMONSTRATED
+
+**SQL | Data Analysis | KPI Analysis | Business Analysis | Aggregation | Conditional Logic | Date Functions | Data Exploration**
+
+---
+
+# 👨‍💻 AUTHOR
 
 **Sai M**
 
 Aspiring Data Analyst
-**SQL | Python | Excel | Power BI | Data Analytics**
 
-⭐ If you find this project useful, consider giving the repository a star!
+**Skills:** SQL | Python | Excel | Power BI | PostgreSQL | Data Analytics
+
+---
+
+# 🔗 CONNECT WITH ME
+
+### 💻 GitHub
+
+https://github.com/stej07033
+
+### 💼 LinkedIn
+
+https://www.linkedin.com/posts/madanapalli-sai-19b835389
+
+---
+
+⭐ **If you find this project useful, please give the repository a star!**
