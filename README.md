@@ -1,35 +1,31 @@
-# 🏦 Bank Loan SQL Project
+# 🏦 Bank Loan Analysis — SQL Queries & Output
 
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/21fce5dc-3525-42bd-95c3-2ae75133e1bc" />
+This README contains **every original query** from `solutions(1).sql`, with the query shown first and its dataset output image immediately below it. The output images were generated from the provided `financial_loan.csv` dataset (**38,576 rows × 24 columns**).
 
-## 📌 Project Overview
-
-This project contains SQL queries for analyzing **Bank Loan Data**.
-
-The project covers loan applications, funded amounts, received amounts, interest rates, DTI, Good Loans, Bad Loans, Loan Status, Grade Analysis, Monthly Analysis, State Analysis, Term Analysis, Employee Length, Purpose, Home Ownership, and Grade A dashboard filtering.
-
----
-
-# 🗂️ Schema
-
-### Bank Loan Project
+## 1. Query 1
 
 ```sql
 SELECT * FROM Bank_loan_data;
 ```
 
----
+### Output
 
-# 📊 A. BANK LOAN REPORT | SUMMARY
+![Query 1 Output](query_outputs/01.png)
 
-### -- Total loan applications
+> **Output note:** Showing first 20 rows of 38,576 rows returned.
+
+## 2. Total loan applications
 
 ```sql
 SELECT COUNT(ID) AS total_loan_appications
 from Bank_loan_data;
 ```
 
-### --MTD loan applications
+### Output
+
+![Query 2 Output](query_outputs/02.png)
+
+## 3. MTD loan applications
 
 ```sql
 SELECT COUNT(ID) AS total_mtd_applications
@@ -37,7 +33,11 @@ FROM Bank_loan_data
 where month(issue_date) = 12;
 ```
 
-### --PTMD loan applications
+### Output
+
+![Query 3 Output](query_outputs/03.png)
+
+## 4. PTMD loan applications
 
 ```sql
 SELECT COUNT(ID) AS total_ptmd_applications
@@ -45,14 +45,22 @@ from Bank_loan_data
 where month(issue_date) = 11;
 ```
 
-### --Total funded amount
+### Output
+
+![Query 4 Output](query_outputs/04.png)
+
+## 5. Total funded amount
 
 ```sql
 SELECT SUM(loan_amount) as total_loan_amount
 from Bank_loan_data;
 ```
 
-### --MTD funded amount
+### Output
+
+![Query 5 Output](query_outputs/05.png)
+
+## 6. MTD funded amount
 
 ```sql
 SELECT SUM(loan_amount) AS total_mtd_amount 
@@ -60,7 +68,11 @@ FROM Bank_loan_data
 where month(issue_date) = 12;
 ```
 
-### --PTMD funded amount
+### Output
+
+![Query 6 Output](query_outputs/06.png)
+
+## 7. PTMD funded amount
 
 ```sql
 SELECT sum(loan_amount) AS total_ptmd_amount
@@ -68,14 +80,22 @@ from Bank_loan_data
 where month(issue_date) = 11;
 ```
 
-### --Total Recevied amount
+### Output
+
+![Query 7 Output](query_outputs/07.png)
+
+## 8. Total Recevied amount
 
 ```sql
 SELECT SUM(total_payment) as total_loan_amount
 from Bank_loan_data;
 ```
 
-### --MTD total Recevied amount
+### Output
+
+![Query 8 Output](query_outputs/08.png)
+
+## 9. MTD total Recevied amount
 
 ```sql
 SELECT SUM(total_payment) AS total_mtd_amount 
@@ -83,7 +103,11 @@ FROM Bank_loan_data
 where month(issue_date) = 12;
 ```
 
-### --PTMD total Recevied amount
+### Output
+
+![Query 9 Output](query_outputs/09.png)
+
+## 10. PTMD total Recevied amount
 
 ```sql
 SELECT sum(total_payment) AS total_ptmd_amount
@@ -91,14 +115,22 @@ from Bank_loan_data
 where month(issue_date) = 11;
 ```
 
-### --int_rate avg interest rate
+### Output
+
+![Query 10 Output](query_outputs/10.png)
+
+## 11. int_rate avg interest rate
 
 ```sql
 SELECT round(AVG(int_rate),4)*100 as avg_interest_rate
 from Bank_loan_data;
 ```
 
-### --MTD average interest rate
+### Output
+
+![Query 11 Output](query_outputs/11.png)
+
+## 12. MTD average interest rate
 
 ```sql
 SELECT round(AVG(int_rate),4)*100 as avg_mtd_rate
@@ -106,7 +138,11 @@ from Bank_loan_data
 where month(issue_date) = 12;
 ```
 
-### --PTMD average interest rate
+### Output
+
+![Query 12 Output](query_outputs/12.png)
+
+## 13. PTMD average interest rate
 
 ```sql
 SELECT round(AVG(int_rate),4)*100 as avg_ptmd_rate
@@ -114,14 +150,22 @@ from Bank_loan_data
 where month(issue_date) = 11;
 ```
 
-### --Dti avg rate
+### Output
+
+![Query 13 Output](query_outputs/13.png)
+
+## 14. Dti avg rate
 
 ```sql
 SELECT round(AVG(DTI),4)*100 AS avg_dti_rate
 from Bank_loan_data;
 ```
 
-### --MTD dti avg_rate
+### Output
+
+![Query 14 Output](query_outputs/14.png)
+
+## 15. MTD dti avg_rate
 
 ```sql
 SELECT round(AVG(Dti),4)*100 as avg_mtd_dti_rate
@@ -129,7 +173,11 @@ from Bank_loan_data
 where month(issue_date) = 12;
 ```
 
-### --PTMD dit avg_rate
+### Output
+
+![Query 15 Output](query_outputs/15.png)
+
+## 16. PTMD dit avg_rate
 
 ```sql
 SELECT round(AVG(Dti),4)*100 as avg_ptmd_dti_rate
@@ -137,11 +185,11 @@ from Bank_loan_data
 where month(issue_date) = 11;
 ```
 
----
+### Output
 
-# ✅ GOOD LOAN ANALYSIS
+![Query 16 Output](query_outputs/16.png)
 
-### ---Good loan applications
+## 17. Good loan applications
 
 ```sql
 SELECT 
@@ -151,7 +199,11 @@ SELECT
 from Bank_loan_data;
 ```
 
-### --- Good loan applications
+### Output
+
+![Query 17 Output](query_outputs/17.png)
+
+## 18. Good loan applications
 
 ```sql
 SELECT 
@@ -160,7 +212,11 @@ from Bank_loan_data
 where loan_status = 'Fully Paid' or loan_status = 'Current';
 ```
 
-### --Good loan Funded amount
+### Output
+
+![Query 18 Output](query_outputs/18.png)
+
+## 19. Good loan Funded amount
 
 ```sql
 SELECT 
@@ -169,7 +225,11 @@ from Bank_loan_data
 where loan_status = 'Fully Paid' or loan_status = 'Current';
 ```
 
-### --Good recevied amount
+### Output
+
+![Query 19 Output](query_outputs/19.png)
+
+## 20. Good recevied amount
 
 ```sql
 SELECT 
@@ -178,11 +238,11 @@ from Bank_loan_data
 where loan_status = 'Fully Paid' or loan_status = 'Current';
 ```
 
----
+### Output
 
-# ❌ BAD LOAN ANALYSIS
+![Query 20 Output](query_outputs/20.png)
 
-### ---Bad loan applications
+## 21. Bad loan applications
 
 ```sql
 SELECT 
@@ -192,7 +252,11 @@ SELECT
 from Bank_loan_data;
 ```
 
-### ---Bad loan applications
+### Output
+
+![Query 21 Output](query_outputs/21.png)
+
+## 22. Bad loan applications
 
 ```sql
 SELECT 
@@ -201,7 +265,11 @@ from Bank_loan_data
 where loan_status = 'Charged Off';
 ```
 
-### --Bad loan Funded amount
+### Output
+
+![Query 22 Output](query_outputs/22.png)
+
+## 23. Bad loan Funded amount
 
 ```sql
 SELECT 
@@ -210,7 +278,11 @@ from Bank_loan_data
 where loan_status = 'Charged Off';
 ```
 
-### --Bad recevied amount
+### Output
+
+![Query 23 Output](query_outputs/23.png)
+
+## 24. Bad recevied amount
 
 ```sql
 SELECT 
@@ -219,11 +291,11 @@ from Bank_loan_data
 where loan_status = 'Charged Off';
 ```
 
----
+### Output
 
-# 📈 LOAN STATUS
+![Query 24 Output](query_outputs/24.png)
 
-### ---Loan Status
+## 25. Loan Status
 
 ```sql
 SELECT loan_status,
@@ -236,11 +308,11 @@ SELECT loan_status,
      group by loan_status;
 ```
 
----
+### Output
 
-# 📅 MTD LOAN STATUS
+![Query 25 Output](query_outputs/25.png)
 
-### ---MTD loan status
+## 26. MTD loan status
 
 ```sql
 SELECT loan_status,
@@ -251,11 +323,11 @@ where MONTH(issue_date) = 12
 group by loan_status;
 ```
 
----
+### Output
 
-# ⭐ AVG AMOUNT DIFFERENT GRADE
+![Query 26 Output](query_outputs/26.png)
 
-### ---AVG amount different grade
+## 27. AVG amount different grade
 
 ```sql
 SELECT grade,
@@ -265,13 +337,11 @@ from Bank_loan_data
 group by grade;
 ```
 
----
+### Output
 
-# 📊 B. BANK LOAN REPORT | OVERVIEW
+![Query 27 Output](query_outputs/27.png)
 
-## MONTH
-
-### -- MONTH
+## 28. MONTH
 
 ```sql
 SELECT month(issue_date) as month_number,
@@ -284,11 +354,11 @@ group by month(issue_date),
 order by total_funded_amount,total_recevied_amount desc;
 ```
 
----
+### Output
 
-## STATE
+![Query 28 Output](query_outputs/28.png)
 
-### -- STATE
+## 29. STATE
 
 ```sql
 SELECT address_state,
@@ -301,11 +371,13 @@ order by total_applications_by_state,
          total_received_amount_by_state desc;
 ```
 
----
+### Output
 
-## TERM
+![Query 29 Output](query_outputs/29.png)
 
-### --Term
+> **Output note:** Original query uses the alias total_applications_by_state for both COUNT(id) and SUM(loan_amount); the image labels the second duplicate as total_applications_by_state_2 so both returned values remain visible.
+
+## 30. Term
 
 ```sql
 SELECT TERM,
@@ -316,11 +388,11 @@ from Bank_loan_data
 group by term;
 ```
 
----
+### Output
 
-## EMPLOYEE LENGTH
+![Query 30 Output](query_outputs/30.png)
 
-### -- EMPLOYEE_LENGTH
+## 31. EMPLOYEE_LENGTH
 
 ```sql
 SELECT emp_length,
@@ -332,11 +404,11 @@ group by emp_length
 order by emp_length desc;
 ```
 
----
+### Output
 
-## PURPOSE
+![Query 31 Output](query_outputs/31.png)
 
-### --PURPOSE
+## 32. PURPOSE
 
 ```sql
 SELECT PURPOSE,
@@ -348,11 +420,11 @@ group by purpose
 order by purpose desc;
 ```
 
----
+### Output
 
-## HOME OWNERSHIP
+![Query 32 Output](query_outputs/32.png)
 
-### --HOME_OWNERSHIP
+## 33. HOME_OWNERSHIP
 
 ```sql
 SELECT home_ownership,
@@ -364,11 +436,11 @@ group by home_ownership
 order by  home_ownership;
 ```
 
----
+### Output
 
-# 🔎 GRADE A DASHBOARD FILTER
+![Query 33 Output](query_outputs/33.png)
 
-### --See the results when we hit the Grade A in the filters for dashboards.
+## 34. See the results when we hit the Grade A in the filters for dashboards.
 
 ```sql
 SELECT 
@@ -381,51 +453,17 @@ WHERE grade = 'A'
 GROUP BY purpose;
 ```
 
----
+### Output
 
-# 💡 PROJECT ANALYSIS
-
-This SQL project demonstrates practical analysis of bank loan data using:
-
-- Loan Application Analysis
-- Funded Amount Analysis
-- Received Amount Analysis
-- Interest Rate Analysis
-- DTI Analysis
-- Good Loan Analysis
-- Bad Loan Analysis
-- Loan Status Analysis
-- Grade Analysis
-- Monthly Analysis
-- State Analysis
-- Term Analysis
-- Employee Length Analysis
-- Purpose Analysis
-- Home Ownership Analysis
+![Query 34 Output](query_outputs/34.png)
 
 ---
 
-# 🛠️ SKILLS USED
+# 🛠️ Skills Used
 
-**SQL | MySQL | SQL Server | Data Analysis | Business Analysis | KPI Analysis | Aggregation | GROUP BY | CASE WHEN | Date Functions**
+**SQL | Data Analysis | KPI Analysis | Aggregation | CASE WHEN | GROUP BY | Date Functions | Business Analysis**
 
----
-
-# 📁 PROJECT STRUCTURE
-
-```text
-Bank-Loan-SQL-Analysis/
-│
-├── Bank_loan_data.csv
-│
-├── solutions(1).sql
-│
-└── README.md
-```
-
----
-
-# 👨‍💻 AUTHOR
+# 👨‍💻 Author
 
 **Sai M**
 
@@ -433,18 +471,8 @@ Aspiring Data Analyst
 
 **Skills:** SQL | Python | Excel | Power BI | PostgreSQL | Data Analytics
 
----
+# 🔗 Connect With Me
 
-# 🔗 CONNECT WITH ME
+**GitHub:** https://github.com/stej07033
 
-### 💻 GitHub
-
-https://github.com/stej07033
-
-### 💼 LinkedIn
-
-https://www.linkedin.com/posts/madanapalli-sai-19b835389
-
----
-
-⭐ **If you find this project useful, please give the repository a star!**
+**LinkedIn:** https://www.linkedin.com/posts/madanapalli-sai-19b835389
