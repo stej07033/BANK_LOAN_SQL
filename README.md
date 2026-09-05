@@ -486,7 +486,7 @@ https://github.com/stej07033
 
 ### 💼 LinkedIn
 
-https://www.linkedin.com/posts/madanapalli-sai-19b835389
+https://www.linkedin.com/posts/madanapalli-sai-19b835389_best-free-certificate-courses-online-2025-activity-7490432956604268544-Asln?utm_source=share&utm_medium=member_android&rcm=ACoAAF-yhccBFOBRwPFDl9PAbb7jDVPGHyD_Tsc
 
 ---
 
