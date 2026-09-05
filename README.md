@@ -1,4 +1,5 @@
 # 🏦 Bank Loan SQL Project
+![Uploading image.png…]()
 
 ## 📌 Project Overview
 
