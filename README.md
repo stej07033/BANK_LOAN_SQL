@@ -1,5 +1,6 @@
 # 🏦 Bank Loan SQL Project
-![Uploading image.png…]()
+
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/21fce5dc-3525-42bd-95c3-2ae75133e1bc" />
 
 ## 📌 Project Overview
 
