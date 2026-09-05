@@ -17,6 +17,8 @@ The project covers loan applications, funded amounts, received amounts, interest
 ```sql
 SELECT * FROM Bank_loan_data;
 ```
+<img width="1901" height="377" alt="image" src="https://github.com/user-attachments/assets/1da23cca-1681-447c-885a-708877e2ceaa" />
+
 
 ---
 
@@ -28,6 +30,8 @@ SELECT * FROM Bank_loan_data;
 SELECT COUNT(ID) AS total_loan_appications
 from Bank_loan_data;
 ```
+<img width="317" height="112" alt="image" src="https://github.com/user-attachments/assets/ab3a8a34-e5d6-490e-9cc0-f018b858a4bb" />
+
 
 ### --MTD loan applications
 
@@ -36,6 +40,8 @@ SELECT COUNT(ID) AS total_mtd_applications
 FROM Bank_loan_data
 where month(issue_date) = 12;
 ```
+<img width="422" height="170" alt="image" src="https://github.com/user-attachments/assets/ddcd8798-761b-450d-8f67-a2b1bbf9aeb4" />
+
 
 ### --PTMD loan applications
 
@@ -44,6 +50,8 @@ SELECT COUNT(ID) AS total_ptmd_applications
 from Bank_loan_data
 where month(issue_date) = 11;
 ```
+<img width="267" height="105" alt="image" src="https://github.com/user-attachments/assets/3a378567-ec6f-4b95-a67a-e53617641603" />
+
 
 ### --Total funded amount
 
@@ -51,6 +59,8 @@ where month(issue_date) = 11;
 SELECT SUM(loan_amount) as total_loan_amount
 from Bank_loan_data;
 ```
+<img width="275" height="107" alt="image" src="https://github.com/user-attachments/assets/3aad6ec5-2fc9-4fbd-9786-fd376ed1ef97" />
+
 
 ### --MTD funded amount
 
@@ -59,6 +69,8 @@ SELECT SUM(loan_amount) AS total_mtd_amount
 FROM Bank_loan_data
 where month(issue_date) = 12;
 ```
+<img width="276" height="97" alt="image" src="https://github.com/user-attachments/assets/7c2e71f3-6074-4d72-a696-e145cfdf4b6c" />
+
 
 ### --PTMD funded amount
 
@@ -67,6 +79,8 @@ SELECT sum(loan_amount) AS total_ptmd_amount
 from Bank_loan_data
 where month(issue_date) = 11;
 ```
+<img width="302" height="97" alt="image" src="https://github.com/user-attachments/assets/1c9b4ef0-b478-4585-b226-10ca564a6375" />
+
 
 ### --Total Recevied amount
 
@@ -74,6 +88,7 @@ where month(issue_date) = 11;
 SELECT SUM(total_payment) as total_loan_amount
 from Bank_loan_data;
 ```
+<img width="287" height="77" alt="image" src="https://github.com/user-attachments/assets/1c304589-cc75-4a85-bd58-ea24c951fe2b" />
 
 ### --MTD total Recevied amount
 
@@ -82,6 +97,7 @@ SELECT SUM(total_payment) AS total_mtd_amount
 FROM Bank_loan_data
 where month(issue_date) = 12;
 ```
+<img width="322" height="110" alt="image" src="https://github.com/user-attachments/assets/75fd85af-d2cc-4b18-849a-e1eb92a83960" />
 
 ### --PTMD total Recevied amount
 
@@ -90,6 +106,7 @@ SELECT sum(total_payment) AS total_ptmd_amount
 from Bank_loan_data
 where month(issue_date) = 11;
 ```
+<img width="337" height="105" alt="image" src="https://github.com/user-attachments/assets/01911a07-76d9-4f70-8aff-e54b08a75252" />
 
 ### --int_rate avg interest rate
 
@@ -97,6 +114,7 @@ where month(issue_date) = 11;
 SELECT round(AVG(int_rate),4)*100 as avg_interest_rate
 from Bank_loan_data;
 ```
+<img width="327" height="162" alt="image" src="https://github.com/user-attachments/assets/9d4b5fe6-7e5b-4630-810b-30b5ed341804" />
 
 ### --MTD average interest rate
 
@@ -105,6 +123,7 @@ SELECT round(AVG(int_rate),4)*100 as avg_mtd_rate
 from Bank_loan_data
 where month(issue_date) = 12;
 ```
+<img width="227" height="121" alt="image" src="https://github.com/user-attachments/assets/0b3bd632-13ce-49a3-868a-55c402647f63" />
 
 ### --PTMD average interest rate
 
@@ -113,6 +132,7 @@ SELECT round(AVG(int_rate),4)*100 as avg_ptmd_rate
 from Bank_loan_data
 where month(issue_date) = 11;
 ```
+<img width="322" height="170" alt="image" src="https://github.com/user-attachments/assets/f2120aab-a197-4d0d-ad88-f19d8b4a93cb" />
 
 ### --Dti avg rate
 
@@ -120,6 +140,7 @@ where month(issue_date) = 11;
 SELECT round(AVG(DTI),4)*100 AS avg_dti_rate
 from Bank_loan_data;
 ```
+<img width="237" height="110" alt="image" src="https://github.com/user-attachments/assets/85217e43-132a-4805-8928-b768ead56904" />
 
 ### --MTD dti avg_rate
 
@@ -128,6 +149,7 @@ SELECT round(AVG(Dti),4)*100 as avg_mtd_dti_rate
 from Bank_loan_data
 where month(issue_date) = 12;
 ```
+<img width="252" height="147" alt="image" src="https://github.com/user-attachments/assets/61f13232-3e97-4839-8b27-c9e245d600d1" />
 
 ### --PTMD dit avg_rate
 
@@ -136,6 +158,7 @@ SELECT round(AVG(Dti),4)*100 as avg_ptmd_dti_rate
 from Bank_loan_data
 where month(issue_date) = 11;
 ```
+<img width="217" height="112" alt="image" src="https://github.com/user-attachments/assets/18f1cbde-b2fe-4bb8-bc2f-cd9e02226635" />
 
 ---
 
@@ -150,6 +173,7 @@ SELECT
      COUNT(ID) AS total_loan_percentage
 from Bank_loan_data;
 ```
+<img width="327" height="102" alt="image" src="https://github.com/user-attachments/assets/b6cf6327-1c8a-4b60-91e1-25cacd084bdc" />
 
 ### --- Good loan applications
 
@@ -159,6 +183,7 @@ SELECT
 from Bank_loan_data
 where loan_status = 'Fully Paid' or loan_status = 'Current';
 ```
+<img width="235" height="125" alt="image" src="https://github.com/user-attachments/assets/f33c7b64-14a4-429a-8e36-ef390c884d32" />
 
 ### --Good loan Funded amount
 
@@ -168,6 +193,7 @@ SELECT
 from Bank_loan_data
 where loan_status = 'Fully Paid' or loan_status = 'Current';
 ```
+<img width="267" height="157" alt="image" src="https://github.com/user-attachments/assets/a8e9711e-bc0f-41e9-a48e-2fcc205310c7" />
 
 ### --Good recevied amount
 
@@ -177,6 +203,7 @@ SELECT
 from Bank_loan_data
 where loan_status = 'Fully Paid' or loan_status = 'Current';
 ```
+<img width="291" height="202" alt="image" src="https://github.com/user-attachments/assets/895f498f-868d-497c-a369-d81297c9799a" />
 
 ---
 
@@ -191,6 +218,7 @@ SELECT
      COUNT(ID) AS total_loan_percentage
 from Bank_loan_data;
 ```
+<img width="157" height="55" alt="image" src="https://github.com/user-attachments/assets/969c51a9-1c62-46d9-b490-dd078cf0da37" />
 
 ### ---Bad loan applications
 
@@ -200,6 +228,8 @@ SELECT
 from Bank_loan_data
 where loan_status = 'Charged Off';
 ```
+<img width="262" height="127" alt="image" src="https://github.com/user-attachments/assets/acdfd15a-1a31-478b-b62d-42213e40d7f3" />
+
 
 ### --Bad loan Funded amount
 
@@ -209,6 +239,8 @@ SELECT
 from Bank_loan_data
 where loan_status = 'Charged Off';
 ```
+<img width="197" height="82" alt="image" src="https://github.com/user-attachments/assets/265a0b67-026f-49e2-b965-f689f1ee82f5" />
+
 
 ### --Bad recevied amount
 
@@ -218,6 +250,7 @@ SELECT
 from Bank_loan_data
 where loan_status = 'Charged Off';
 ```
+<img width="197" height="77" alt="image" src="https://github.com/user-attachments/assets/08b67b71-ad34-4ed3-80e3-b0d002b94b51" />
 
 ---
 
@@ -235,6 +268,7 @@ SELECT loan_status,
      from bank_loan_data
      group by loan_status;
 ```
+<img width="860" height="127" alt="image" src="https://github.com/user-attachments/assets/d0765969-bba2-4d91-b615-60ffa87f5032" />
 
 ---
 
@@ -250,6 +284,7 @@ from Bank_loan_data
 where MONTH(issue_date) = 12
 group by loan_status;
 ```
+<img width="412" height="162" alt="image" src="https://github.com/user-attachments/assets/d4be5427-5bb7-4541-b405-0fec63dbd041" />
 
 ---
 
@@ -264,6 +299,7 @@ SELECT grade,
 from Bank_loan_data
 group by grade;
 ```
+<img width="482" height="207" alt="image" src="https://github.com/user-attachments/assets/b6d179b7-4131-4201-8138-28de16a226c1" />
 
 ---
 
@@ -283,6 +319,7 @@ group by month(issue_date),
        datename(month,issue_date)
 order by total_funded_amount,total_recevied_amount desc;
 ```
+<img width="571" height="302" alt="image" src="https://github.com/user-attachments/assets/2ac0c8da-64b5-4777-a0f6-ccd415081ee9" />
 
 ---
 
@@ -300,6 +337,7 @@ group by address_state
 order by total_applications_by_state,
          total_received_amount_by_state desc;
 ```
+<img width="662" height="365" alt="image" src="https://github.com/user-attachments/assets/252617a9-4745-4fa0-afec-7150f3f6c577" />
 
 ---
 
@@ -315,6 +353,7 @@ SELECT TERM,
 from Bank_loan_data
 group by term;
 ```
+<img width="627" height="162" alt="image" src="https://github.com/user-attachments/assets/1eaaa34e-e999-43bd-9a3a-ee26c59863d0" />
 
 ---
 
@@ -331,6 +370,7 @@ from Bank_loan_data
 group by emp_length
 order by emp_length desc;
 ```
+<img width="617" height="336" alt="image" src="https://github.com/user-attachments/assets/fcc35d46-f94e-4eca-bafa-eb78bd67dfc6" />
 
 ---
 
@@ -347,6 +387,7 @@ from Bank_loan_data
 group by purpose
 order by purpose desc;
 ```
+<img width="715" height="347" alt="image" src="https://github.com/user-attachments/assets/55b5461e-ede7-474a-aba3-2f2100338e25" />
 
 ---
 
@@ -363,6 +404,7 @@ from Bank_loan_data
 group by home_ownership
 order by  home_ownership;
 ```
+<img width="657" height="210" alt="image" src="https://github.com/user-attachments/assets/5337d7c9-a848-4c4d-8b15-0132fa22b121" />
 
 ---
 
@@ -380,6 +422,7 @@ FROM bank_loan_data
 WHERE grade = 'A'
 GROUP BY purpose;
 ```
+<img width="621" height="337" alt="image" src="https://github.com/user-attachments/assets/7e6b91eb-ef44-4928-99da-eba546241a30" />
 
 ---
 
